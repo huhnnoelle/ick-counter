@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ick Counter 💀</title>
+
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #ffe6f0, #e6f0ff);
+      text-align: center;
+      padding: 30px;
+      overflow: hidden;
+    }
+
+    h1 {
+      margin-bottom: 5px;
+    }
+
+    p {
+      margin-top: 0;
+      color: #555;
+    }
+
+    .counter {
+      font-size: 1.5rem;
+      margin: 20px 0;
+    }
+
+    button {
+      font-size: 1.2rem;
+      padding: 15px 25px;
+      margin: 10px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .noelle {
+      background-color: #ff9acb;
+    }
+
+    .charlie {
+      background-color: #9acbff;
+    }
+
+    .reset {
+      background-color: #444;
+      color: white;
+      margin-top: 20px;
+    }
+
+    .emoji {
+      position: fixed;
+      top: -50px;
+      font-size: 2rem;
+      animation: fall linear forwards;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>💀 Ick Counter 💀</h1>
+  <p>Tap responsibly.</p>
+
+  <div class="counter">
+    Noelle: <span id="noelleCount">0</span><br/>
+    Charlie: <span id="charlieCount">0</span>
+  </div>
+
+  <button class="noelle" onclick="addIck('noelle')">
+    Noelle did an ick
+  </button>
+
+  <button class="charlie" onclick="addIck('charlie')">
+    Charlie did an ick
+  </button>
+
+  <br/>
+
+  <button class="reset" onclick="resetCounts()">
+    Reset All Icks
+  </button>
+
+  <script>
+    let noelleCount = 0;
+    let charlieCount = 0;
+
+    function addIck(person) {
+      if (person === 'noelle') {
+        noelleCount++;
+        document.getElementById('noelleCount').textContent = noelleCount;
+      } else {
+        charlieCount++;
+        document.getElementById('charlieCount').textContent = charlieCount;
+      }
+      dropEmoji();
+    }
+
+    function resetCounts() {
+      noelleCount = 0;
+      charlieCount = 0;
+      document.getElementById('noelleCount').textContent = 0;
+      document.getElementById('charlieCount').textContent = 0;
+    }
+
+    function dropEmoji() {
+      const emoji = document.createElement('div');
+      emoji.className = 'emoji';
+      emoji.textContent = '😏';
+      emoji.style.left = Math.random() * 100 + 'vw';
+      emoji.style.animationDuration = (Math.random() * 2 + 2) + 's';
+      document.body.appendChild(emoji);
+
+      setTimeout(() => {
+        emoji.remove();
+      }, 4000);
+    }
+  </script>
+</body>
+</html>
